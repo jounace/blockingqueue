@@ -30,8 +30,7 @@ class MyInvocationHandler implements InvocationHandler {
         this.target = target;
     }
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args)
-            throws Throwable {
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println("Invoking sayHello");
         Object result = method.invoke(target, args);
         return result;
