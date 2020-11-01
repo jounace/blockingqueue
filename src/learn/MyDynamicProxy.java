@@ -4,6 +4,8 @@ package learn;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 
 public class MyDynamicProxy {
     public static  void main (String[] args) {
@@ -37,3 +39,20 @@ class MyInvocationHandler implements InvocationHandler {
     }
 }
 
+
+class Counter {
+    private final AtomicLong counter = new AtomicLong();
+    public void increase() {
+        counter.incrementAndGet();
+    }
+}
+
+
+
+class CompactCounter {
+    private volatile long counter;
+    private static final AtomicLongFieldUpdater<CompactCounter> updater = AtomicLongFieldUpdater.newUpdater(CompactCounter.class, "counter");
+    public void increase() {
+        updater.incrementAndGet(this);
+    }
+}
