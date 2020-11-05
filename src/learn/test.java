@@ -1,6 +1,13 @@
 package learn;
-import java.lang.Integer;
+
 public class test {
-    int a = 2;
+
+    public static void main(String arg[]){
+        int[] a = new int[3];
+        a[3] = 10;
+        System.out.print(a[3]);
+    }
+
+
 
 }
